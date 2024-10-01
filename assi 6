@@ -54,7 +54,7 @@ _start:
     mov rsi, dblock
     call disp_block
 
-    call BT_NO
+    call BT_NO or BT_OS(assig 7)
     
     print amsg, amsg_len
     print smsg, smsg_len
@@ -71,6 +71,13 @@ BT_NO:
     mov rsi, sblock
     mov rdi, dblock
     mov rcx, 5
+
+BT_OS:
+    mov rsi,sblock+4
+    mov rdi,dblock+2
+    mov rcx,5
+    STD
+    REP MOVSB
 
 back:
     mov al, [rsi]
